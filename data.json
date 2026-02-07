@@ -1,0 +1,115 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Masala Dosa",
+      "price": 60,
+      "prepTime": 5,
+      "category": "South Indian"
+    },
+    {
+      "id": 2,
+      "name": "Idli Vada",
+      "price": 40,
+      "prepTime": 2,
+      "category": "South Indian"
+    },
+    {
+      "id": 3,
+      "name": "Veg Noodles",
+      "price": 80,
+      "prepTime": 8,
+      "category": "Chinese"
+    },
+    {
+      "id": 4,
+      "name": "Fried Rice",
+      "price": 80,
+      "prepTime": 8,
+      "category": "Chinese"
+    },
+    {
+      "id": 5,
+      "name": "Tea",
+      "price": 15,
+      "prepTime": 1,
+      "category": "Beverages"
+    },
+    {
+      "id": 6,
+      "name": "Coffee",
+      "price": 20,
+      "prepTime": 1,
+      "category": "Beverages"
+    },
+    {
+      "id": 7,
+      "name": "Samosa",
+      "price": 20,
+      "prepTime": 0,
+      "category": "Snacks"
+    },
+    {
+      "id": 8,
+      "name": "Sandwich",
+      "price": 50,
+      "prepTime": 4,
+      "category": "Snacks"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1001,
+      "customerName": "Test User",
+      "status": "PENDING",
+      "createdAt": "2026-02-07T04:12:51.484Z",
+      "updatedAt": "2026-02-07T04:12:51.486Z",
+      "predictedReadyTime": "2026-02-07T04:22:51.486Z",
+      "totalAmount": 120
+    },
+    {
+      "id": 1002,
+      "customerName": "eftyg",
+      "status": "PENDING",
+      "totalAmount": 75,
+      "predictedReadyTime": "2026-02-07T04:19:30.326Z",
+      "createdAt": "2026-02-07T04:13:30.327Z",
+      "updatedAt": "2026-02-07T04:13:30.327Z"
+    },
+    {
+      "id": 1003,
+      "customerName": "iugi",
+      "status": "PENDING",
+      "totalAmount": 20,
+      "predictedReadyTime": "2026-02-07T04:21:31.393Z",
+      "createdAt": "2026-02-07T04:19:31.396Z",
+      "updatedAt": "2026-02-07T04:19:31.396Z"
+    }
+  ],
+  "orderItems": [
+    {
+      "id": 1,
+      "orderId": 1001,
+      "menuItemId": 1,
+      "quantity": 2
+    },
+    {
+      "id": 2,
+      "orderId": 1002,
+      "menuItemId": 1,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "orderId": 1002,
+      "menuItemId": 5,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "orderId": 1003,
+      "menuItemId": 7,
+      "quantity": 1
+    }
+  ]
+}

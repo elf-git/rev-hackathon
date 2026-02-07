@@ -1,65 +1,62 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { ArrowRight, Clock, Users, Zap } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      {/* Background Gradients */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+
+      <div className="z-10 text-center space-y-8 max-w-2xl">
+        <h1 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+          Canteen Rush AI
+        </h1>
+        <p className="text-xl text-slate-300">
+          Skip the queue. Predict the wait. Eat on time.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-12">
+          <Link
+            href="/student"
+            className="group relative p-6 bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800/80"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="flex flex-col items-center space-y-4">
+              <div className="p-3 bg-blue-500/10 rounded-xl group-hover:bg-blue-500/20 transition-colors">
+                <Users className="w-8 h-8 text-blue-400" />
+              </div>
+              <h2 className="text-2xl font-semibold">I'm a Student</h2>
+              <p className="text-sm text-slate-400">Order ahead & check status</p>
+            </div>
+            <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-slate-500 group-hover:text-blue-400 transition-colors" />
+          </Link>
+
+          <Link
+            href="/vendor"
+            className="group relative p-6 bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-all hover:bg-slate-800/80"
           >
-            Documentation
-          </a>
+            <div className="flex flex-col items-center space-y-4">
+              <div className="p-3 bg-purple-500/10 rounded-xl group-hover:bg-purple-500/20 transition-colors">
+                <Zap className="w-8 h-8 text-purple-400" />
+              </div>
+              <h2 className="text-2xl font-semibold">I'm a Vendor</h2>
+              <p className="text-sm text-slate-400">Manage orders & queue</p>
+            </div>
+            <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-slate-500 group-hover:text-purple-400 transition-colors" />
+          </Link>
         </div>
-      </main>
-    </div>
+
+        <div className="pt-12 flex justify-center gap-8 text-slate-500 text-sm">
+          <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4" />
+            <span>AI Time Prediction</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Zap className="w-4 h-4" />
+            <span>Instant Coordination</span>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
