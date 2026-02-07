@@ -3,11 +3,11 @@ import db from '@/app/lib/db';
 
 export async function PATCH(
     request: Request,
-    { params }: { params: Promise<{ id: string }> }
+    { params }: any
 ) {
     try {
-        const { id: idStr } = await params;
-        const id = parseInt(idStr);
+        const resolvedParams = await params;
+        const id = parseInt(resolvedParams.id);
         const body = await request.json();
         const { status } = body;
 
