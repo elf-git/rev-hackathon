@@ -14,11 +14,17 @@ let _prisma: any = null;
 const getPrisma = async () => {
   if (!_prisma) {
     try {
-      // DYNAMIC IMPORT to prevent crash if @prisma/client is missing/broken locally
-      const { PrismaClient } = await import('@prisma/client');
-      _prisma = new PrismaClient();
+      // DYNAMIC IMPORT with safety check for named/default exports
+      const prismaModule: any = await import('@prisma/client');
+      const PrismaClient = prismaModule.PrismaClient || prismaModule.default?.PrismaClient;
+
+      if (PrismaClient) {
+        _prisma = new PrismaClient();
+      } else {
+        throw new Error("PrismaClient not found in module");
+      }
     } catch (e) {
-      console.error("Prisma Initialization Failed, falling back to JSON");
+      console.error("Prisma Initialization Failed, falling back to JSON:", e);
       return null;
     }
   }
