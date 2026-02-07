@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/app/lib/db';
+import db from '@/app/lib/db';
 
 // GET: Fetch active orders (for Vendor Dashboard & Polling)
 export async function GET() {
     try {
-        const orders = await prisma.order.findMany({
+        const orders = await db.order.findMany({
             where: {
                 status: { in: ['PENDING', 'PREPARING', 'READY'] }
             },
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
 
         // Fetch item details to calculate
         const itemIds = items.map((i: any) => i.menuItemId);
-        const dbItems = await prisma.menuItem.findMany({
+        const dbItems = await db.menuItem.findMany({
             where: { id: { in: itemIds } }
         });
 
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
         // Simple Queue Impact Calculation
         // Get count of PENDING orders to add a "One minute per order ahead" factor
-        const activeOrdersCount = await prisma.order.count({
+        const activeOrdersCount = await db.order.count({
             where: { status: { in: ['PENDING', 'PREPARING'] } }
         });
 
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         const predictedReadyTime = new Date(Date.now() + predictedDelayMinutes * 60000);
 
         // 2. Create Order
-        const order = await prisma.order.create({
+        const order = await db.order.create({
             data: {
                 customerName,
                 status: 'PENDING',

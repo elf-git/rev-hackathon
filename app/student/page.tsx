@@ -1,10 +1,10 @@
-import prisma from '@/app/lib/db';
+import db from '@/app/lib/db';
 import OrderInterface from './OrderInterface';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 
 export default async function StudentPage() {
-    const menuItems = await prisma.menuItem.findMany({
+    const menuItems = await db.menuItem.findMany({
         orderBy: { category: 'asc' }
     });
 

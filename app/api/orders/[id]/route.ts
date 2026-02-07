@@ -1,22 +1,26 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/app/lib/db';
+import db from '@/app/lib/db';
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const id = parseInt(params.id);
+        const { id: idStr } = await params;
+        const id = parseInt(idStr);
         const body = await request.json();
         const { status } = body;
 
-        const updatedOrder = await prisma.order.update({
+        console.log(`[ORDER UPDATE] ID: ${id}, New Status: ${status}`);
+
+        const updatedOrder = await db.order.update({
             where: { id },
             data: { status }
         });
 
         return NextResponse.json(updatedOrder);
     } catch (error) {
+        console.error(`[ORDER UPDATE ERROR]`, error);
         return NextResponse.json({ error: 'Failed to update order' }, { status: 500 });
     }
 }
