@@ -46,10 +46,10 @@ export async function POST(request: Request) {
             where: { id: { in: itemIds } }
         });
 
-        const dbItemsMap = new Map(dbItems.map(i => [i.id, i]));
+        const dbItemsMap = new Map(dbItems.map((i: any) => [i.id, i]));
 
         for (const item of items) {
-            const dbItem = dbItemsMap.get(item.menuItemId);
+            const dbItem: any = dbItemsMap.get(item.menuItemId);
             if (dbItem) {
                 totalAmount += dbItem.price * item.quantity;
                 if (dbItem.prepTime > maxPrepTime) {
